@@ -1,0 +1,18 @@
+node {
+   stage('Clone') {
+   git branch: 'main', url: 'https://github.com/KarimLabidProf/jenkins-HelloWorld.git'
+    
+    }
+     stage('Build') {
+    // some block
+    sh '''javac Main.java
+'''
+    
+    }
+     stage('Run') {
+    // some block
+    sh '''java Main
+'''
+    
+    }
+}
