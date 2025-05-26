@@ -1,18 +1,24 @@
-node {
-   stage('Clone') {
-   git branch: 'main', url: 'https://github.com/KarimLabidProf/jenkins-HelloWorld.git'
-    
-    }
-     stage('Build') {
-    // some block
-    sh '''javac Main.java
-'''
-    
-    }
-     stage('Run') {
-    // some block
-    sh '''java Main
-'''
-    
+pipeline {
+    agent any 
+    stages {
+        stage('clone') { 
+            steps {
+                // 
+                bat "rd /s /q . || exit 0"
+                bat "git clone https://github.com/KarimLabidProf/jenkins-HelloWorld.git"
+            }
+        }
+        stage('build') { 
+            steps {
+                bat "cd jenkins-HelloWorld && javac Main.java"
+
+                // 
+            }
+        }
+        stage('run') { 
+            steps {
+                bat " cd jenkins-HelloWorld && java Main"
+            }
+        }
     }
 }
